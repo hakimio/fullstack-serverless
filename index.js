@@ -186,7 +186,8 @@ class ServerlessFullstackPlugin {
                 );
 
                 deployDescribe.forEach(m => this.serverless.cli.log(m));
-                return this.cliOptions.confirm === false ? true : new Confirm(`Do you want to proceed?`).run();
+                const proceedWithoutPrompt = (this.cliOptions.confirm === false) || this.cliOptions.force;
+                return proceedWithoutPrompt ? true : new Confirm(`Do you want to proceed?`).run();
             })
             .then(goOn => {
                 if (goOn) {
