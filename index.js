@@ -67,7 +67,8 @@ class ServerlessFullstackPlugin {
         return this.validateConfig()
             .then(() => {
                 bucketName = this.getBucketName(this.options.bucketName);
-                return this.cliOptions.confirm === false ? true : new Confirm(`Are you sure you want to delete bucket '${bucketName}'?`).run();
+                const proceedWithoutPrompt = (this.cliOptions.confirm === false) || this.getConfig('noConfirm', false);
+                return proceedWithoutPrompt ? true : new Confirm(`Are you sure you want to delete bucket '${bucketName}'?`).run();
             })
             .then(goOn => {
                 if (goOn) {
@@ -186,7 +187,8 @@ class ServerlessFullstackPlugin {
                 );
 
                 deployDescribe.forEach(m => this.serverless.cli.log(m));
-                return this.cliOptions.confirm === false ? true : new Confirm(`Do you want to proceed?`).run();
+                const proceedWithoutPrompt = (this.cliOptions.confirm === false) || this.getConfig('noConfirm', false);
+                return proceedWithoutPrompt ? true : new Confirm(`Do you want to proceed?`).run();
             })
             .then(goOn => {
                 if (goOn) {

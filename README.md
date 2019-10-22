@@ -74,6 +74,7 @@ custom:
       prefix: my-prefix
     minimumProtocolVersion: TLSv1.2_2018
     priceClass: PriceClass_100
+    noConfirm: true                            # Set to true if you do not want a confirmation prompt to interrupt automated builds.
 ```
 
 
@@ -434,6 +435,24 @@ Set minimum SSL/TLS [protocol version](https://docs.aws.amazon.com/cloudfront/la
 
 - The minimum SSL/TLS protocol that CloudFront uses to communicate with viewers
 - The cipher that CloudFront uses to encrypt the content that it returns to viewers
+
+---
+
+---
+
+**noConfirm**
+
+_optional_, default: `false`
+
+```yaml
+custom:
+  fullstack:
+    ...
+    noConfirm: true
+    ...
+```
+
+Set to `true` if you do not want a confirmation prompt to interrupt automated builds.
 
 ---
 
